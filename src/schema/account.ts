@@ -1,5 +1,12 @@
 import mongoose from "mongoose";
 import bcrypt from "bcrypt";
+
+export interface IAccount {
+  username: string;
+  email: string;
+  password: string;
+}
+
 const accountSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
   email: { type: String, required: true, unique: true },
