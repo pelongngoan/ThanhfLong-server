@@ -1,0 +1,25 @@
+name: Deploy to EC2 on Release Tag
+
+on:
+  push:
+    tags:
+      - "v*"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.8.0
+        with:
+          ssh-private-key: ${{ secrets.EC2_SSH_KEY }}
+
+      - name: Deploy over SSH
+        run: |
+          ssh -o StrictHostKeyChecking=no -p ${{ secrets.EC2_PORT }} ${{ secrets.EC2_HOST }} << EOF
+            docker pull ${{ secrets.IMAGE_NAME }}:latest
+            cd ~/ThanhfLong-server
+            docker-compose down
+            docker-compose up -d
+          EOF
