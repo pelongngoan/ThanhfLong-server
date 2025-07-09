@@ -12,9 +12,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const port = process.env.PORT;
-const MONGO_URI = process.env.MONGO_URI || "";
+const MONGODB_URI = process.env.MONGODB_URI || "";
 
-connectDB(MONGO_URI);
+connectDB(MONGODB_URI);
 
 app.use("/api", router);
 
