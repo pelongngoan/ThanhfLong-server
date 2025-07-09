@@ -10,7 +10,7 @@
     "test:coverage": "jest --coverage",
     "test:unit": "jest tests/unit",
     "test:integration": "jest tests/integration",
-    "build": "tsc",
+    "build": "tsc && tsc-alias && tsc-esm-fix",
     "start": "node dist/app.js",
     "dev": "tsx watch src/app.ts"
   },
@@ -37,6 +37,8 @@
     "ts-jest": "^29.4.0",
     "ts-node": "^10.9.2",
     "ts-node-dev": "^2.0.0",
+    "tsc-alias": "^1.8.16",
+    "tsc-esm-fix": "^3.1.2",
     "tsx": "^4.20.3",
     "typescript": "^5.8.3"
   },
