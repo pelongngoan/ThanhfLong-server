@@ -32,3 +32,12 @@ export const deleteAccount = async (id: string) => {
   const deletedAccount = await Account.findByIdAndDelete(id);
   return deletedAccount;
 };
+
+export const getAccounts = async (page: number, limit: number) => {
+  const offset = (page - 1) * limit;
+  const accounts = await Account.find()
+    .skip(offset)
+    .limit(limit)
+    .sort({ createdAt: -1 });
+  return accounts;
+};
